@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Joystick } from "react-joystick-component";
 import Config from "../scripts/config";
 
-class Teleoperation extends Component {
+class Teleoperation2 extends Component {
   state = { ros: null };
 
   constructor() {
@@ -91,7 +91,7 @@ class Teleoperation extends Component {
     //we need to create a ROS publisher on the topic cmd_vel
     var cmd_vel = new window.ROSLIB.Topic({
       ros: this.state.ros,
-      name: Config.CMD_VEL_TOPIC,
+      name: Config.CMD_VEL2_TOPIC,
       messageType: "geometry_msgs/Twist",
     });
     //we need to create a twist message to be to published to rosbridge
@@ -126,4 +126,4 @@ class Teleoperation extends Component {
   }
 }
 
-export default Teleoperation;
+export default Teleoperation2;
