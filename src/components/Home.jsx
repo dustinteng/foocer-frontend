@@ -8,12 +8,22 @@ import ButtonV1 from "./ButtonV1";
 
 import Config from "../scripts/config";
 
+import Joystick from "./Joystick";
+
+import Menu from "./Menu";
+
 // import Map from "./Map";
 import { Row, Col, Container, Button } from "react-bootstrap";
 class Home extends Component {
     state = {
+        manual_mode: false,
     };
-
+    
+    toggleManualMode = () => {
+        this.setState((prevState) => ({
+          manual_mode: !prevState.manual_mode,
+        }));
+      }
 
 
     render() {
@@ -28,16 +38,15 @@ class Home extends Component {
                     </Row>
                     <Row>
                         <Col>
-                            <Teleoperation />
-                            <Teleoperation2/>
+                            {this.state.manual_mode ? <Joystick/> : <Menu/>}
                         </Col>
                     </Row>
                     <Row>
                         {" "}
                         <Col >
-                            {/* <RobotState /> */}
-                            <ButtonV1 name={Config.MANUAL_MODE}/>
-                            <ButtonV1 name={"berbeda"}/>
+                            <button onClick={this.toggleManualMode}>
+                                Toggle Components
+                            </button>
                         </Col>
                         <Col>
                             {/* <Map></Map> */}

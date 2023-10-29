@@ -74,6 +74,7 @@ class ButtonV1 extends Component {
             name: this.state.name,
             level: 1
         });
+        
         button_state.publish(but_state);
         console.log(this.state.name);
 
