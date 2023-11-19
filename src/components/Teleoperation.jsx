@@ -31,10 +31,10 @@ class Teleoperation extends Component {
         try {
           this.state.ros.connect(
             "ws://" +
-            Config.ROSBRIDGE_SERVER_IP +
-            ":" +
-            Config.ROSBRIDGE_SERVER_PORT +
-            ""
+              Config.ROSBRIDGE_SERVER_IP +
+              ":" +
+              Config.ROSBRIDGE_SERVER_PORT +
+              ""
           );
         } catch (error) {
           console.log("connection problem ");
@@ -45,18 +45,18 @@ class Teleoperation extends Component {
     try {
       this.state.ros.connect(
         "ws://" +
-        Config.ROSBRIDGE_SERVER_IP +
-        ":" +
-        Config.ROSBRIDGE_SERVER_PORT +
-        ""
+          Config.ROSBRIDGE_SERVER_IP +
+          ":" +
+          Config.ROSBRIDGE_SERVER_PORT +
+          ""
       );
     } catch (error) {
       console.log(
         "ws://" +
-        Config.ROSBRIDGE_SERVER_IP +
-        ":" +
-        Config.ROSBRIDGE_SERVER_PORT +
-        ""
+          Config.ROSBRIDGE_SERVER_IP +
+          ":" +
+          Config.ROSBRIDGE_SERVER_PORT +
+          ""
       );
       console.log("connection problem ");
     }
