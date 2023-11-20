@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Joystick } from "react-joystick-component";
 import Config from "../scripts/config";
 
-class Teleoperation2 extends Component {
+class TeleoperationTranslation extends Component {
   state = { ros: null };
 
   constructor() {
@@ -31,10 +31,10 @@ class Teleoperation2 extends Component {
         try {
           this.state.ros.connect(
             "ws://" +
-            Config.ROSBRIDGE_SERVER_IP +
-            ":" +
-            Config.ROSBRIDGE_SERVER_PORT +
-            ""
+              Config.ROSBRIDGE_SERVER_IP +
+              ":" +
+              Config.ROSBRIDGE_SERVER_PORT +
+              ""
           );
         } catch (error) {
           console.log("connection problem ");
@@ -45,18 +45,18 @@ class Teleoperation2 extends Component {
     try {
       this.state.ros.connect(
         "ws://" +
-        Config.ROSBRIDGE_SERVER_IP +
-        ":" +
-        Config.ROSBRIDGE_SERVER_PORT +
-        ""
+          Config.ROSBRIDGE_SERVER_IP +
+          ":" +
+          Config.ROSBRIDGE_SERVER_PORT +
+          ""
       );
     } catch (error) {
       console.log(
         "ws://" +
-        Config.ROSBRIDGE_SERVER_IP +
-        ":" +
-        Config.ROSBRIDGE_SERVER_PORT +
-        ""
+          Config.ROSBRIDGE_SERVER_IP +
+          ":" +
+          Config.ROSBRIDGE_SERVER_PORT +
+          ""
       );
       console.log("connection problem ");
     }
@@ -67,20 +67,20 @@ class Teleoperation2 extends Component {
     //we need to create a ROS publisher on the topic cmd_vel
     var cmd_vel = new window.ROSLIB.Topic({
       ros: this.state.ros,
-      name: Config.CMD_VEL_TOPIC,
+      name: Config.CMD_VEL_TRANSLATION_TOPIC,
       messageType: Config.CMD_VEL_MSG_TYPE,
     });
     //we need to create a twist message to be to published to rosbridge
     var twist = new window.ROSLIB.Message({
       linear: {
         x: event.y / 2,
-        y: 0,
+        y: event.x / 2,
         z: 0,
       },
       angular: {
         x: 0,
         y: 0,
-        z: -event.x / 2,
+        z: 0,
       },
     });
     //we need to publish the message on the cmd_vel topic
@@ -91,7 +91,7 @@ class Teleoperation2 extends Component {
     //we need to create a ROS publisher on the topic cmd_vel
     var cmd_vel = new window.ROSLIB.Topic({
       ros: this.state.ros,
-      name: Config.CMD_VEL2_TOPIC,
+      name: Config.CMD_VEL_TRANSLATION_TOPIC,
       messageType: "geometry_msgs/Twist",
     });
     //we need to create a twist message to be to published to rosbridge
@@ -116,8 +116,8 @@ class Teleoperation2 extends Component {
       <div>
         <Joystick
           size={100}
-          baseColor="#EEEEEE"
-          stickColor="#BBBBBB"
+          baseColor="#BBBBBB"
+          stickColor="#EEEEEE"
           move={this.handleMove}
           stop={this.handleStop}
         ></Joystick>
@@ -126,4 +126,4 @@ class Teleoperation2 extends Component {
   }
 }
 
-export default Teleoperation2;
+export default TeleoperationTranslation;

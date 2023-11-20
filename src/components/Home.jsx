@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import Connection from "./Connection";
 import RobotState from "./RobotState";
-import Teleoperation from "./Teleoperation";
-import Teleoperation2 from "./Teleoperation2";
+import Teleoperation from "./TeleoperationTranslation";
+import Teleoperation2 from "./TeleoperationRotation";
 
 import ButtonV1 from "./ButtonV1";
 
 import Config from "../scripts/config";
 import { Counter } from "../redux/counter/Counter";
 import Joystick from "./Joystick";
-import RosConnection from "../redux/ros/RosConnection";
+import RosConnection from "./RosConnection";
 
 import Menu from "./Menu";
 
@@ -29,14 +29,13 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Container>
-          <h1 className="text-center mt-3">Robot Control Page</h1>
-          <Row>
-            <Col>
-              {/* <Connection /> */}
-              <RosConnection />
-            </Col>
-          </Row>
+        <h1 className="text-center mt-3">Robot Control Page</h1>
+        <div>
+          <div className="windowver">
+            {/* <Connection /> */}
+            <RosConnection />
+          </div>
+
           <Row>
             <Col>{this.state.manual_mode ? <Joystick /> : <Counter />}</Col>
           </Row>
@@ -45,9 +44,8 @@ class Home extends Component {
             <Col>
               <button onClick={this.toggleManualMode}>Toggle Components</button>
             </Col>
-            <Col>{/* <Map></Map> */}</Col>
           </Row>
-        </Container>
+        </div>
       </div>
     );
   }

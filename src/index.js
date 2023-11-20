@@ -7,8 +7,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import store from "./redux/store";
 import { Provider } from "react-redux";
+import rootReducer from "./redux/reducers";
+import { configureStore } from "@reduxjs/toolkit";
+
+const store = configureStore({
+  reducer: rootReducer,
+  // Add any middleware or enhancers as needed
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

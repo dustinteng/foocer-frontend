@@ -67,20 +67,20 @@ class Teleoperation extends Component {
     //we need to create a ROS publisher on the topic cmd_vel
     var cmd_vel = new window.ROSLIB.Topic({
       ros: this.state.ros,
-      name: Config.CMD_VEL_TOPIC,
+      name: Config.CMD_VEL_TRANSLATION_TOPIC,
       messageType: Config.CMD_VEL_MSG_TYPE,
     });
     //we need to create a twist message to be to published to rosbridge
     var twist = new window.ROSLIB.Message({
       linear: {
         x: event.y / 2,
-        y: 0,
+        y: event.x / 2,
         z: 0,
       },
       angular: {
         x: 0,
         y: 0,
-        z: -event.x / 2,
+        z: 0,
       },
     });
     //we need to publish the message on the cmd_vel topic
@@ -91,7 +91,7 @@ class Teleoperation extends Component {
     //we need to create a ROS publisher on the topic cmd_vel
     var cmd_vel = new window.ROSLIB.Topic({
       ros: this.state.ros,
-      name: Config.CMD_VEL_TOPIC,
+      name: Config.CMD_VEL_TRANSLATION_TOPIC,
       messageType: "geometry_msgs/Twist",
     });
     //we need to create a twist message to be to published to rosbridge
@@ -116,8 +116,8 @@ class Teleoperation extends Component {
       <div>
         <Joystick
           size={100}
-          baseColor="#EEEEEE"
-          stickColor="#BBBBBB"
+          baseColor="#BBBBBB"
+          stickColor="#EEEEEE"
           move={this.handleMove}
           stop={this.handleStop}
         ></Joystick>
