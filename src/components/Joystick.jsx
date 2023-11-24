@@ -13,9 +13,7 @@ class Joystick extends Component {
       <div>
         {/* <Container> */}
         <Row>
-          <Col>
-            <TeleoperationTranslation />
-          </Col>
+          <Col>{/* <TeleoperationTranslation /> */}</Col>
         </Row>
         <Row>
           <Col>

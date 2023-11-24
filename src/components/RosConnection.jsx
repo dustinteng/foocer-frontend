@@ -10,11 +10,10 @@ const RosConnection = () => {
 
   const newRos = new window.ROSLIB.Ros();
   // dispatch(setRos(newRos));
+  console.log("newRos", newRos);
 
   useEffect(() => {
     const initConnection = () => {
-      // dispatch(setRos(newRos));
-
       newRos.on("connection", () => {
         console.log("Connection established in RosConnection Component!");
         setConnected(true);
@@ -53,12 +52,13 @@ const RosConnection = () => {
     };
 
     // Initialize connection when the component mounts
+    console.log("intializing connection");
     initConnection();
 
     // Clean up the connection when the component unmounts
     return () => {
       if (ros) {
-        ros.close();
+        ros?.close();
       }
     };
   }, [dispatch, ros]);
