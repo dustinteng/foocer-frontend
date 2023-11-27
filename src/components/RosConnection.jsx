@@ -8,27 +8,31 @@ const RosConnection = () => {
   const [connected, setConnected] = useState(false);
   const dispatch = useDispatch();
 
-  const newRos = new window.ROSLIB.Ros();
-  // dispatch(setRos(newRos));
-  console.log("newRos", newRos);
-
   useEffect(() => {
     const initConnection = () => {
-      newRos.on("connection", () => {
+      ros.on("connection", () => {
         console.log("Connection established in RosConnection Component!");
         setConnected(true);
         // Dispatch the 'setRos' action to update 'ros' in the Redux store
-        console.log("newrossss__", newRos);
+        // console.log("ros", ros);
       });
 
-      newRos.on("close", () => {
+      ros.on("error", function (error) {
+        console.log(error);
+        // switch (error.) {
+        //   case "mak lo":
+        //     break
+        // }
+      });
+
+      ros.on("close", () => {
         console.log("Connection is closed!");
         setConnected(false);
 
         // Try to reconnect every 3 seconds
         setTimeout(() => {
           try {
-            newRos.connect(
+            ros.connect(
               `ws://${Config.ROSBRIDGE_SERVER_IP}:${Config.ROSBRIDGE_SERVER_PORT}`
             );
           } catch (error) {
@@ -38,18 +42,20 @@ const RosConnection = () => {
       });
 
       try {
-        newRos.connect(
+        ros.connect(
           `ws://${Config.ROSBRIDGE_SERVER_IP}:${Config.ROSBRIDGE_SERVER_PORT}`
         );
       } catch (error) {
         console.log(
           `ws://${Config.ROSBRIDGE_SERVER_IP}:${Config.ROSBRIDGE_SERVER_PORT}`
         );
-        console.log("Connection problem ");
+        console.log("Connection problemm ");
       }
 
-      // setRosInstance(newRos);
+      // setRosInstance(ros);
     };
+
+    // dispatch(setRos(ros));
 
     // Initialize connection when the component mounts
     console.log("intializing connection");

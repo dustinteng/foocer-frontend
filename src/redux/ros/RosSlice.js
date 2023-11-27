@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  ros: null, // Your ROS connection object
+  ros: new window.ROSLIB.Ros(), // Your ROS connection object
   isConnected: false,
 };
 

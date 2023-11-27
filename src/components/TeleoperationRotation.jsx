@@ -9,12 +9,10 @@ const TeleoperationRotation = () => {
   const ross = useSelector(selectRos);
   const isConnected = useSelector(selectRosConnectionStatus);
   console.log("ROS___ from Redux store:", ross);
+  // This effect will run when the component mounts
 
   useEffect(() => {
-    // This effect will run when the component mounts
-
     console.log("ROS from Redux store:", ross);
-
     // Add any other logic you need to run on mount
     // ...
 
